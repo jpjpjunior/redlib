@@ -13,11 +13,11 @@ rust-version = "1.81"
 default-run = "redlib"
 
 [dependencies]
-askama = { version = "0.14.0", default-features = false, features = [
+askama = { version = "0.16.1", default-features = false, features = [
     "std",
     "derive",
 ] }
-cached = { version = "0.59.0", features = ["async"] }
+cached = { version = "4.0.2", features = ["async"] }
 clap = { version = "4.4.11", default-features = false, features = [
     "std",
     "env",
@@ -36,8 +36,8 @@ time = { version = "0.3.31", features = ["local-offset"] }
 url = "2.5.0"
 rust-embed = { version = "8.1.0", features = ["include-exclude"] }
 libflate = "2.0.0"
-brotli = { version = "7.0.0", features = ["std"] }
-toml = "0.8.8"
+brotli = { version = "9.0.0", features = ["std"] }
+toml = "1.1.8"
 serde_yaml = "0.9.29"
 build_html = "2.4.0"
 uuid = { version = "1.6.1", features = ["v4"] }

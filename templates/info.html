@@ -5,11 +5,11 @@
 {% block sortstyle %}{% endblock %}
 
 {% block subscriptions %}
-	{% call utils::sub_list("") %}
+	{% call utils::sub_list("") %}{% endcall %}
 {% endblock %}
 
 {% block search %}
-	{% call utils::search("".to_owned(), "") %}
+	{% call utils::search("".to_owned(), "") %}{% endcall %}
 {% endblock %}
 
 {% block content %}
