@@ -1,6 +1,6 @@
 services:
   redlib:
-    image: ghcr.io/nachtalb/redlib:latest
+    image: ghcr.io/jpjpjunior/redlib:latest
     restart: always
     container_name: "redlib"
     ports:
@@ -15,6 +15,7 @@ services:
     env_file: .env
     networks:
       - redlib
+    # No healthcheck: the distroless image has no wget/curl/shell to probe with.
 
 networks:
   redlib:
