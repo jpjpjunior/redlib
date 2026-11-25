@@ -40,7 +40,10 @@ jobs:
         with:
           registry: ghcr.io
           username: ${{ github.actor }}
-          password: ${{ secrets.GITHUB_TOKEN }}
+          # GITHUB_TOKEN can't create a new container package from a forked
+          # repo (permission_denied: write_package), so this uses a PAT with
+          # write:packages stored as the GHCR_TOKEN Actions secret.
+          password: ${{ secrets.GHCR_TOKEN }}
 
       # The builder stages in the Dockerfile run on $BUILDPLATFORM and
       # cross-compile, so this needs no QEMU. buildx builds one manifest
