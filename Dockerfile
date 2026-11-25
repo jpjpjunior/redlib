@@ -35,8 +35,11 @@ ARG GIT_HASH=
 # Set by the CI on a release tag: the binary then reports that version.
 ARG REDLIB_RELEASE=
 
-RUN --mount=type=cache,id=cargo-registry,target=/root/.cargo/registry \
-    --mount=type=cache,id=cargo-git,target=/root/.cargo/git \
+# Cache ids include TARGETARCH: buildx builds both platforms in parallel,
+# and a shared cargo registry mount makes concurrent unpacks collide
+# (".cargo-ok: File exists").
+RUN --mount=type=cache,id=cargo-registry-${TARGETARCH},target=/root/.cargo/registry \
+    --mount=type=cache,id=cargo-git-${TARGETARCH},target=/root/.cargo/git \
     --mount=type=cache,id=redlib-target-${TARGETARCH},target=/redlib/target \
     cargo build --release --locked --bin redlib \
     && cp target/$CARGO_BUILD_TARGET/release/redlib /usr/local/bin/redlib
